@@ -21,6 +21,13 @@ public class MongoDBService extends DatabaseService {
 
     @Override
     public Iterable findCustomers(String firstName, String phone) {
-        return repository.findCustomers(firstName, phone);
+        return repository.findCustomers(firstName, getLong(phone));
+    }
+
+    Long getLong(String variable) {
+        if (variable == null || variable.isEmpty()) {
+            return null;
+        }
+        return  Long.parseLong(variable);
     }
 }
