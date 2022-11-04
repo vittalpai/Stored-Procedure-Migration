@@ -1,4 +1,4 @@
-package com.example.migrate;
+package com.storedproc.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

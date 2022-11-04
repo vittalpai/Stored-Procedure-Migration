@@ -1,9 +1,12 @@
-package com.example.migrate;
+package com.storedproc.demo.mongodb;
 
+import com.storedproc.demo.DatabaseTypes;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 
+@Profile(DatabaseTypes.MONGODB)
 public class Customer {
 
     @Id
