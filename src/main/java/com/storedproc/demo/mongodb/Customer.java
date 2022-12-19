@@ -27,50 +27,50 @@ public class Customer {
     public Customer() {
     }
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public Number getAge() {
-		return age;
-	}
-
-	public void setAge(Number age) {
-		this.age = age;
-	}
-
-	public Long getPhone() {
-		return phone;
-	}
-
-	public void setPhone(Long phone) {
-		this.phone = phone;
-	}
-
-	public Customer(String firstName, String lastName, Number age, Long phone) {
+    public Customer(String firstName, String lastName, Number age, Long phone) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
+        this.phone = phone;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Number getAge() {
+        return age;
+    }
+
+    public void setAge(Number age) {
+        this.age = age;
+    }
+
+    public Long getPhone() {
+        return phone;
+    }
+
+    public void setPhone(Long phone) {
         this.phone = phone;
     }
 

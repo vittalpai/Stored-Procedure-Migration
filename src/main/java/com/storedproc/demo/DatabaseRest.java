@@ -24,8 +24,8 @@ public class DatabaseRest {
     }
 
     @RequestMapping(value = "/search")
-    public Iterable getCustomer(@RequestParam(required = false) String firstname,@RequestParam(required = false) String phone) {
-        return dbService.get(databaseType).findCustomers(firstname, phone);
+    public Iterable getCustomer(@RequestParam(required = false) String firstName,@RequestParam(required = false) String lastName) {
+        return dbService.get(databaseType).findCustomers(firstName, lastName);
     }
 
 }

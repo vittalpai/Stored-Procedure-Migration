@@ -5,13 +5,23 @@ import com.storedproc.demo.DatabaseTypes;
 import org.springframework.context.annotation.Profile;
 
 import javax.persistence.*;
-import java.sql.ResultSet;
 
+import static javax.persistence.ParameterMode.IN;
+import static javax.persistence.ParameterMode.REF_CURSOR;
 
-@NamedStoredProcedureQueries({@NamedStoredProcedureQuery(name = "Customer.search", procedureName = "SEARCHPERSON", parameters = {@StoredProcedureParameter(type = ResultSet.class, mode = ParameterMode.REF_CURSOR)})})
 
 @Entity
 @Table(name = "USERS")
+@NamedStoredProcedureQuery(
+        name = "CARDMASK_SP",
+        resultClasses = Customer.class,
+        procedureName = "CARDMASK",
+        parameters = {
+                @StoredProcedureParameter(mode = IN, name = "FIRSTNAME", type = String.class),
+                @StoredProcedureParameter(mode = IN, name = "LASTNAME", type = String.class),
+                @StoredProcedureParameter(mode = REF_CURSOR, name = "RES", type = void.class)
+        }
+)
 @Profile(DatabaseTypes.ORACLE)
 public class Customer {
 
@@ -31,15 +41,19 @@ public class Customer {
     @Column(name = "PHONE", length = 50)
     private String phone;
 
+    @Column(name = "CARDNUMBER", length = 50)
+    private String cardNumber;
+
     public Customer() {
     }
 
-    public Customer(String id, String firstName, String lastName, Long age, String phone) {
+    public Customer(String id, String firstName, String lastName, Long age, String phone, String cardNumber) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.phone = phone;
+        this.cardNumber = cardNumber;
     }
 
     public String getId() {
@@ -80,6 +94,14 @@ public class Customer {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getCardNumber() {
+        return cardNumber;
+    }
+
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
     }
 
 }

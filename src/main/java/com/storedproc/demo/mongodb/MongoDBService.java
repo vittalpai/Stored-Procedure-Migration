@@ -1,11 +1,10 @@
 package com.storedproc.demo.mongodb;
+
 import com.storedproc.demo.DatabaseService;
 import com.storedproc.demo.DatabaseTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Profile(DatabaseTypes.MONGODB)
 @Service(value = DatabaseTypes.MONGODB)
@@ -28,6 +27,6 @@ public class MongoDBService extends DatabaseService {
         if (variable == null || variable.isEmpty()) {
             return null;
         }
-        return  Long.parseLong(variable);
+        return Long.parseLong(variable);
     }
 }
