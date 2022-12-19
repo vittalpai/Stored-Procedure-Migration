@@ -14,7 +14,7 @@ import static javax.persistence.ParameterMode.REF_CURSOR;
 @Table(name = "USERS")
 @NamedStoredProcedureQuery(
         name = "CARDMASK_SP",
-        resultClasses = Customer.class,
+        resultClasses = User.class,
         procedureName = "CARDMASK",
         parameters = {
                 @StoredProcedureParameter(mode = IN, name = "FIRSTNAME", type = String.class),
@@ -23,7 +23,7 @@ import static javax.persistence.ParameterMode.REF_CURSOR;
         }
 )
 @Profile(DatabaseTypes.ORACLE)
-public class Customer {
+public class User {
 
     @Id
     @Column(name = "ID", nullable = false, updatable = false)
@@ -44,10 +44,10 @@ public class Customer {
     @Column(name = "CARDNUMBER", length = 50)
     private String cardNumber;
 
-    public Customer() {
+    public User() {
     }
 
-    public Customer(String id, String firstName, String lastName, Long age, String phone, String cardNumber) {
+    public User(String id, String firstName, String lastName, Long age, String phone, String cardNumber) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

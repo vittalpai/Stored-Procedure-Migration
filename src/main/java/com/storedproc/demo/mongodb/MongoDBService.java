@@ -11,16 +11,16 @@ import org.springframework.stereotype.Service;
 public class MongoDBService extends DatabaseService {
 
     @Autowired
-    private CustomerRepository repository;
+    private UserRepository repository;
 
     @Override
-    public Iterable<Customer> findAllCustomers() {
+    public Iterable<User> findAllUsers() {
         return repository.findAll();
     }
 
     @Override
-    public Iterable findCustomers(String firstName, String lastName) {
-        return repository.findCustomers(firstName, lastName);
+    public Iterable findUser(String firstName, String lastName) {
+        return repository.findUser(firstName, lastName);
     }
 
 }

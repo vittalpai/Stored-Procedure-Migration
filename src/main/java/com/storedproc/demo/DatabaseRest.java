@@ -9,7 +9,7 @@ import java.util.Map;
 
 
 @RestController
-@RequestMapping(value = "/customer")
+@RequestMapping(value = "/user")
 public class DatabaseRest {
 
     @Autowired
@@ -20,12 +20,12 @@ public class DatabaseRest {
 
     @RequestMapping(value = "/all")
     public Iterable getAllCustomers() {
-        return dbService.get(databaseType).findAllCustomers();
+        return dbService.get(databaseType).findAllUsers();
     }
 
     @RequestMapping(value = "/search")
     public Iterable getCustomer(@RequestParam(required = false) String firstName,@RequestParam(required = false) String lastName) {
-        return dbService.get(databaseType).findCustomers(firstName, lastName);
+        return dbService.get(databaseType).findUser(firstName, lastName);
     }
 
 }

@@ -12,16 +12,16 @@ import org.springframework.transaction.annotation.Transactional;
 public class OracleService extends DatabaseService {
 
     @Autowired
-    private CustomerRepository repository;
+    private UserRepository repository;
 
     @Override
-    public Iterable findAllCustomers() {
+    public Iterable findAllUsers() {
         return repository.findAll();
     }
 
     @Override
     @Transactional
-    public Iterable findCustomers(String firstName, String lastName) {
-        return repository.findCustomers(firstName, lastName);
+    public Iterable findUser(String firstName, String lastName) {
+        return repository.findUser(firstName, lastName);
     }
 }

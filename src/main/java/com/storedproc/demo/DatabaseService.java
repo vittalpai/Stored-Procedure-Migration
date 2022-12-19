@@ -1,7 +1,5 @@
 package com.storedproc.demo;
 
-import java.util.List;
-
 public abstract class DatabaseService {
     private String type;
 
@@ -9,6 +7,6 @@ public abstract class DatabaseService {
         return this.type;
     }
 
-    public abstract Iterable findAllCustomers();
-    public abstract Iterable findCustomers(String firstName, String phone);
+    public abstract Iterable findAllUsers();
+    public abstract Iterable findUser(String firstName, String phone);
 }

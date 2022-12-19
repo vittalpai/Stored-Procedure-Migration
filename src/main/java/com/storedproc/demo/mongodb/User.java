@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 
 @Profile(DatabaseTypes.MONGODB)
-public class Customer {
+public class User {
 
     @Id
     public String id;
@@ -27,10 +27,10 @@ public class Customer {
     @Field("cardNumber")
     public String cardNumber;
 
-    public Customer() {
+    public User() {
     }
 
-    public Customer(String firstName, String lastName, Number age, Long phone, String cardNumber) {
+    public User(String firstName, String lastName, Number age, Long phone, String cardNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
