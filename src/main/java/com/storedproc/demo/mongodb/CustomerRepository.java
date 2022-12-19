@@ -10,7 +10,7 @@ import java.util.List;
 @Profile(DatabaseTypes.MONGODB)
 public interface CustomerRepository extends MongoRepository<Customer, String> {
 
-    @Aggregation(pipeline = {"{ '$match': { '$expr': { '$cond': { if: { '$and': [{ '$ne': [ ?0, null]},{ '$ne': [ ?1, null] }]}, then: { '$and': [{ '$eq': ['$firstName', ?0]},{'$eq': ['$phone',?1]}]}, else: { '$cond': { if: {'$ne': [?0, null]}, then: {'$eq': ['$firstName', ?0]}, else: {'$eq': ['$phone', ?1]}}}}}}}",})
-    List<Customer> findCustomers(String firstName, Long phone);
+    @Aggregation(pipeline = {"{ '$match': { 'firstName': ?0, 'lastName': ?1 } }","{ '$project': { '_id': 1, 'firstName': 1, 'lastName': 1, 'phone' : 1, 'age' : 1, 'cardNumber': { '$concat': ['XXXXXXXXXXXX', { '$substrCP': ['$cardNumber', 12, 4] }] } } }"})
+    List<Customer> findCustomers(String firstName, String lastName);
 
 }

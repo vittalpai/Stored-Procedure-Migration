@@ -24,14 +24,18 @@ public class Customer {
     @Field("phone")
     public Long phone;
 
+    @Field("cardNumber")
+    public String cardNumber;
+
     public Customer() {
     }
 
-    public Customer(String firstName, String lastName, Number age, Long phone) {
+    public Customer(String firstName, String lastName, Number age, Long phone, String cardNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.phone = phone;
+        this.cardNumber = cardNumber;
     }
 
     public String getId() {
@@ -73,6 +77,10 @@ public class Customer {
     public void setPhone(Long phone) {
         this.phone = phone;
     }
+
+    public String getCardNumber() { return cardNumber;}
+
+    public void setCardNumber(String cardNumber) { this.cardNumber = cardNumber;}
 
 }
 
