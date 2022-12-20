@@ -1,10 +1,6 @@
 # Stored-Procedure-Demo
 Spring Boot Java application that demonstrates how PL/SQL stored procedures are implemented client-side using Oracle or MongoDB. This application uses polymorphic implementation to connect to MongoDB or Oracle database and exposed through common RESTful APIs. In this sample, we intend to illustrate how a fairly-complex relational stored procedure can be easily converted into a MongoDB aggregation framework using the readily available framework operators and constructs.
 
-## Prerequisite
-* Java 1.8
-* Maven 3.x
-
 Here is a sample Stored Procedure implementation in Relational Database.
 ```
 create or replace PROCEDURE CARDMASK 
@@ -57,6 +53,11 @@ var pipeline = [
     }
 ]
 ```
+
+## Prerequisites
+* Java 1.8
+* Maven 3.x
+* Oracle/MongoDB Server
 
 ## Usage
 
