@@ -1,5 +1,5 @@
 # Stored-Procedure-Demo
-Spring Boot Java application that demonstrates how PL/SQL stored procedures are implemented client-side using Oracle or MongoDB. This application uses polymorphic implementation to connect to MongoDB or Oracle database and exposed through common RESTful APIs. In this sample, we intend to illustrate how a fairly-complex relational stored procedure can be easily converted into a MongoDB aggregation framework using the readily available framework operators and constructs.
+Spring Boot Java application that demonstrates how PL/SQL stored procedures are implemented client-side using Oracle or MongoDB. This application uses polymorphic implementation to connect to MongoDB or Oracle database and exposed through common RESTful APIs. In this sample, we intend to illustrate how a fairly-complex relational stored procedure can be easily converted into a MongoDB aggregation framework using the readily available framework operators and constructs. The application packages the DB implementations and libraries based on the maven and spring boot profiles.
 
 Here is a sample Stored Procedure implementation in Relational Database.
 ```
@@ -73,10 +73,10 @@ var pipeline = [
     spring.datasource.username=username
     spring.datasource.password=password
     ```
-* Build & run the application with following command in your terminal. You can connect to MongoDB/Oracle database backend by setting spring boot profile value to  `mongodb`/`oracle` while running application. 
+* Build & run the application with following command in your terminal. You can connect to MongoDB/Oracle database backend by setting spring boot profile and maven profile value to  `mongodb`/`oracle` while running application. 
     ```
     mvn clean package
-    mvn spring-boot:run -Dspring-boot.run.profiles=mongodb
+    mvn spring-boot:run -Dspring-boot.run.profiles=mongodb -P mongodb
     ```
 
 * Invoke the following GET endpoints using REST Clients like POSTMAN, etc to fetch the data.
