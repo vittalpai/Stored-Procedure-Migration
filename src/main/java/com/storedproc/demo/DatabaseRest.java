@@ -13,7 +13,7 @@ import java.util.Map;
 public class DatabaseRest {
 
     @Autowired
-    Map<String, DatabaseService> dbService;
+    Map<String, UsersDao> dbService;
 
     @Value("${spring.profiles.active}")
     private String databaseType;

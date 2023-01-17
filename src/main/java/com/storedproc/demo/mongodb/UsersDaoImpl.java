@@ -1,6 +1,6 @@
 package com.storedproc.demo.mongodb;
 
-import com.storedproc.demo.DatabaseService;
+import com.storedproc.demo.UsersDao;
 import com.storedproc.demo.DatabaseTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Profile(DatabaseTypes.MONGODB)
 @Service(value = DatabaseTypes.MONGODB)
-public class MongoDBService extends DatabaseService {
+public class UsersDaoImpl extends UsersDao {
 
     @Autowired
     private UserRepository repository;

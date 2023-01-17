@@ -1,6 +1,6 @@
 package com.storedproc.demo.oracle;
 
-import com.storedproc.demo.DatabaseService;
+import com.storedproc.demo.UsersDao;
 import com.storedproc.demo.DatabaseTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service(value = DatabaseTypes.ORACLE)
 @Profile(DatabaseTypes.ORACLE)
-public class OracleService extends DatabaseService {
+public class UsersDaoImpl extends UsersDao {
 
     @Autowired
     private UserRepository repository;

@@ -1,6 +1,6 @@
 package com.storedproc.demo;
 
-public abstract class DatabaseService {
+public abstract class UsersDao {
     private String type;
 
     public String getType() {
