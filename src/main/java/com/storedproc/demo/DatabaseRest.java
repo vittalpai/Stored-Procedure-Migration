@@ -13,7 +13,7 @@ import java.util.Map;
 public class DatabaseRest {
 
     @Autowired
-    Map<String, UsersDao> dbService;
+    Map<String, CustomersDao> dbService;
 
     @Value("${spring.profiles.active}")
     private String databaseType;
@@ -24,8 +24,8 @@ public class DatabaseRest {
     }
 
     @RequestMapping(value = "/search")
-    public Iterable getCustomer(@RequestParam(required = false) String firstName,@RequestParam(required = false) String lastName) {
-        return dbService.get(databaseType).findUser(firstName, lastName);
+    public Iterable getCustomers(@RequestParam(required = false) String occupation,@RequestParam(required = false) String zipcode) {
+        return dbService.get(databaseType).findUsers(occupation, zipcode);
     }
 
 }

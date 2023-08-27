@@ -1,6 +1,6 @@
 package com.storedproc.demo.oracle;
 
-import com.storedproc.demo.UsersDao;
+import com.storedproc.demo.CustomersDao;
 import com.storedproc.demo.DatabaseTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
@@ -9,10 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service(value = DatabaseTypes.ORACLE)
 @Profile(DatabaseTypes.ORACLE)
-public class UsersDaoImpl extends UsersDao {
+public class CustomersDaoImpl extends CustomersDao {
 
     @Autowired
-    private UserRepository repository;
+    private CustomerRepository repository;
 
     @Override
     public Iterable findAllUsers() {
@@ -21,7 +21,7 @@ public class UsersDaoImpl extends UsersDao {
 
     @Override
     @Transactional
-    public Iterable findUser(String firstName, String lastName) {
-        return repository.findUser(firstName, lastName);
+    public Iterable findUsers(String occupation, String zipcode) {
+        return repository.findUsers(occupation, zipcode);
     }
 }

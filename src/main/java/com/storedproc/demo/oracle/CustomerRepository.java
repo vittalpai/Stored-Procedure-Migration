@@ -11,9 +11,9 @@ import java.util.List;
 
 @Profile(DatabaseTypes.ORACLE)
 @Repository
-public interface UserRepository extends CrudRepository<User, Long> {
+public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
-    @Procedure(name = "CARDMASK_SP")
-    List findUser(@Param("FIRSTNAME") String firstName, @Param("LASTNAME") String lastName);
+    @Procedure(name = "TOPCUSTOMERS_SP")
+    List findUsers(@Param("OCCUPATION") String occupation, @Param("ZIPCODE") String zipCode);
 
 }

@@ -1,6 +1,6 @@
 package com.storedproc.demo;
 
-public abstract class UsersDao {
+public abstract class CustomersDao {
     private String type;
 
     public String getType() {
@@ -8,5 +8,5 @@ public abstract class UsersDao {
     }
 
     public abstract Iterable findAllUsers();
-    public abstract Iterable findUser(String firstName, String phone);
+    public abstract Iterable findUsers(String occupation, String zipcode);
 }
