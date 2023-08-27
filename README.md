@@ -3,26 +3,27 @@ Spring Boot Java application that demonstrates how PL/SQL stored procedures are 
 
 Here is a sample Stored Procedure implementation in Relational Database.
 ```
-create or replace PROCEDURE CARDMASK 
-(
-  FIRSTNAME IN  VARCHAR2,
-  LASTNAME  IN  VARCHAR2,
-  RES    OUT SYS_REFCURSOR
-) AS 
-    stmt VARCHAR2(200);
+CREATE or replace PROCEDURE TOPCUSTOMERS (
+  ZIPCODE IN  VARCHAR2,
+  OCCUPATION IN  VARCHAR2,
+  RES    OUT SYS_REFCURSOR )
+AS
+ stmt VARCHAR2(2000);
 BEGIN
-    stmt := 'SELECT ID,FIRSTNAME, LASTNAME, AGE, PHONE, LPAD(SUBSTR (CARDNUMBER, 13, 4), 16, ''X'') AS CARDNUMBER FROM USERS';
-    IF FirstName IS NOT NULL AND LastName IS NOT NULL THEN 
-       stmt := stmt || ' WHERE ' || 'FirstName=' || CHR (39) || FirstName || CHR (39) || ' AND LastName=' || CHR (39) || LastName || CHR (39) ;
-    END IF; 
-    
-    OPEN RES FOR stmt;
-    
-    EXCEPTION
+  stmt := 'SELECT C.ID, C.NAME, C.PHONENUMBER, LPAD(SUBSTR (T.CARDNUMBER, 13, 4), 16, ''X'') AS MASKEDCARDNUMBER FROM CUSTOMER C INNER JOIN CUSTOMERTRANSACTIONSUMMARY T ON C.ID = T.CustomerID';
+              
+   IF ZIPCODE IS NOT NULL AND OCCUPATION IS NOT NULL THEN 
+       stmt := stmt || ' WHERE ' || 'C.ZipCode=' || CHR (39) || ZIPCODE || CHR (39) || ' AND C.Occupation=' || CHR (39) || OCCUPATION || CHR (39) ;
+  END IF;
+  stmt := stmt || ' ORDER BY C.NAME FETCH FIRST 10 ROWS ONLY';  
+
+  OPEN RES FOR stmt;
+  
+  EXCEPTION
         WHEN OTHERS THEN
             dbms_output.put_line(SQLERRM);
 
-END CARDMASK;
+END TOPCUSTOMERS;
 ```
 The above procedure uses the LPAD function to take a string, which is a credit card number, and from which we extract a substring (SUBSTR) of the last 4 characters. All the other characters in the string are then “padded” by a single character string of ‘X’.
 
@@ -31,25 +32,25 @@ Here is the equivalent implementation in MongoDB, we can achieve the same masked
 ```
 var pipeline = [
     {
-        "$match" : {
-            "FirstName": "Vittal",
-            "LastName": "Pai"
+        '$match': {
+            'Occupation': 'Business', 
+            'ZipCode': '12031'
         }
-    },
+    }, 
     {
-        "$project" : {
-            "_id" : 1,
-            "firstName" : 1,
-            "lastName" : 1,
-            "age" : 1,
-            "phone" : 1,
-            "cardNumber" : {
-                "$concat": [ 'XXXXXXXXXXXX', {
-                    "$substrCP" : ["$cardNumber", 12, 4]
-                }]
-            }
-            
+        '$project': {
+            'Name': 1, 
+            'PhoneNumber': 1, 
+            'CardNumber': { '$concat': [ '************', { '$substr': [ '$CardNumber', 12, 4 ] } ] }
         }
+    }, 
+    {
+        '$sort': {
+            'Name': 1
+        }
+    }, 
+    {
+        '$limit': 10
     }
 ]
 ```
@@ -62,6 +63,8 @@ var pipeline = [
 ## Usage
 
 * Clone the repository 
+* Import the Schema & Stored procedure(`schema/oracle.sql`) into Oracle instance.
+* Import the JSON documents(`schema/mongodb.json`) into a MongoDB instance.
 * Update the MongoDB/Oracle Server credentials in `src/main/resources/application.properties` file
     ```
     # MongoDB
@@ -82,7 +85,7 @@ var pipeline = [
 * Invoke the following GET endpoints using REST Clients like POSTMAN, etc to fetch the data.
     ```
     http://localhost:8080/user/all
-    http://localhost:8080/user/search?lastName=Pai&firstName=Vittal
+    http://localhost:8080/user/search?occupation=Engineer&zipcode=10291
     ```
 
     ![REST CALL](/images/db-call.png)
