@@ -233,7 +233,7 @@ BEGIN
    IF ZIPCODE IS NOT NULL AND OCCUPATION IS NOT NULL THEN 
        stmt := stmt || ' WHERE ' || 'C.ZipCode=' || CHR (39) || ZIPCODE || CHR (39) || ' AND C.Occupation=' || CHR (39) || OCCUPATION || CHR (39) ;
   END IF;
-  stmt := stmt || ' ORDER BY C.NAME FETCH FIRST 10 ROWS ONLY';  
+  stmt := stmt || ' ORDER BY T.BALANCE DESC FETCH FIRST 10 ROWS ONLY';  
 
   OPEN RES FOR stmt;
 
